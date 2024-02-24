@@ -32,8 +32,9 @@
         @endif
 
         <!-- Page Content -->
-        <main class="lg:pl-72 pt-[80px] h-full">
+        <main class="lg:pl-64 pt-[60px] h-full">
             {{ $slot }}
+            <x-flash-message />
         </main>
     </div>
 </body>
