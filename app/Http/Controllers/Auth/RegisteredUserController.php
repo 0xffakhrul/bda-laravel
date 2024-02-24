@@ -36,7 +36,7 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'blood_type' => ['required', 'string', 'in:A+,A-,B+,B-,O+,O-,AB+,AB-'],
-            'gender' => ['required', 'string', 'in:Male,Female,Other'],
+            'gender' => ['required', 'string', 'in:male,female'],
             'contact_number' => ['required', 'string', 'digits_between:10,14'],
         ]);
 
