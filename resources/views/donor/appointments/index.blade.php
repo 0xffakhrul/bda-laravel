@@ -2,9 +2,11 @@
     <div class="py-12">
         <div class="max-w-screen-3xl mx-auto sm:px-6 lg:px-8">
             <div class="flex items-center justify-between pb-6">
-                <h2 class="text-3xl font-extrabold">Appointments List</h2>
-                <button class="bg-rose-700 text-white font-bold px-4 py-2 rounded-md"><a
-                        href="{{ route('donor.appointments.create') }}">Schedule new Appointment</a> </button>
+                <x-title title="Appointment List" />
+                {{-- <button class="bg-rose-700 text-white font-bold px-4 py-2 rounded-md"><a
+                        href="{{ route('donor.appointments.create') }}">Schedule new Appointment</a> </button> --}}
+                <x-primary-button class=""><a href="{{ route('donor.appointments.create') }}">Schedule new
+                        Appointment</a> </x-primary-button>
             </div>
             <div class="grid grid-cols-2 gap-4">
                 @foreach ($appointments as $appointment)
@@ -25,26 +27,17 @@
                                         d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                                 </svg>
                                 {{ $appointment->time }}</p>
-                            @if ($appointment->status === 'canceled')
-                                <span
-                                    class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded border border-red-400">Canceled</span>
-                            @elseif ($appointment->status === 'accepted' || $appointment->status === 'confirmed')
-                                <span
-                                    class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded border border-green-400">Confirmed</span>
-                            @elseif ($appointment->status === 'rejected')
-                                <span
-                                    class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded border border-red-400">Rejected</span>
-                            @else
-                                <span
-                                    class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded border border-blue-400">Pending</span>
-                            @endif
+                            <x-badge status="{{ $appointment->status }}" />
                         </div>
                         <div class="flex flex-col items-end justify-center gap-2 font-semibold">
-                            <button class="bg-rose-700 px-4 py-2 rounded-md w-32 text-white"><a
+                            {{-- <button class="bg-rose-700 px-4 py-2 rounded-md w-32 text-white"><a
                                     href="{{ route('donor.appointments.edit', ['id' => $appointment->id]) }}">Edit</a>
-                            </button>
-                            <button
-                                class="bg-white border-2 border-rose-700 text-rose-700 hover:bg-rose-700 hover:text-white transition delay-100 px-4 py-2 rounded-md w-32">Cancel</button>
+                            </button> --}}
+                            <x-primary-button class="w-32 "><a
+                                    href="{{ route('donor.appointments.edit', ['id' => $appointment->id]) }}">Edit</a>
+                            </x-primary-button>
+                            <x-secondary-button
+                                class="bg-white border-2 border-rose-700 text-rose-700 hover:bg-rose-700 hover:text-white transition delay-100 px-4 py-2 rounded-md w-32">Cancel</x-secondary-button>
                         </div>
                     </div>
                 @endforeach

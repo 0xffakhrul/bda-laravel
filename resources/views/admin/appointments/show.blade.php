@@ -2,7 +2,7 @@
     <div class="py-8">
         <div class="max-w-screen-2xl mx-auto sm:px-6 lg:px-8">
             {{ Breadcrumbs::render('admin.appointments.show', $appointment) }}
-            <h2 class="text-3xl font-bold pb-5">Appointment #{{ $appointment->id }}</h2>
+            <x-title title="Appointment #{{ $appointment->id }}" />
             <div class="sm:hidden">
                 <label for="Tab" class="sr-only">Tab</label>
                 <select id="Tab" class="w-full rounded-md border-gray-200">
@@ -53,19 +53,7 @@
                             <div class="space-y-2">
                                 <p class="font-medium">Status</p>
                                 <div>
-                                    @if ($appointment->status === 'canceled')
-                                        <span
-                                            class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded border border-red-400">Canceled</span>
-                                    @elseif ($appointment->status === 'accepted' || $appointment->status === 'confirmed')
-                                        <span
-                                            class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded border border-green-400">Confirmed</span>
-                                    @elseif ($appointment->status === 'rejected')
-                                        <span
-                                            class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded border border-red-400">Rejected</span>
-                                    @else
-                                        <span
-                                            class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded border border-blue-400">Pending</span>
-                                    @endif
+                                    <x-badge status="{{ $appointment->status }}" />
                                 </div>
                             </div>
                             <div class="space-y-2">
@@ -80,7 +68,8 @@
                 <form action="{{ route('admin.appointments.destroy', ['id' => $appointment->id]) }}" method="POST">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="px-4 py-2 bg-red-500 text-white font-bold rounded-md">Delete</button>
+                    <x-primary-button type="submit"
+                        class="px-4 py-2 bg-red-500 text-white font-bold rounded-md">Delete</x-primary-button>
                 </form>
             </div>
         </div>

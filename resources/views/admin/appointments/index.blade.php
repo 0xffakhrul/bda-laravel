@@ -4,7 +4,8 @@
             {{ Breadcrumbs::render('admin.appointments.index') }}
             <div class="flex items-center justify-between pb-4">
                 <h1 class="text-3xl font-bold">Appointments List</h1>
-                <button class="bg-rose-700 px-4 py-2 text-gray-50 font-bold rounded-md">Add New Appointment</button>
+                <x-primary-button class="bg-rose-700 px-4 py-2 text-gray-50 font-bold rounded-md">Add New
+                    Appointment</x-primary-button>
             </div>
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class=" text-gray-900 dark:text-gray-100">
@@ -47,19 +48,7 @@
                                     <td class="px-6 py-4">{{ $appointment->time }}</td>
                                     {{-- <td class="px-6 py-4">{{ $appointment->notes }}</td> --}}
                                     <td class="px-6 py-4">
-                                        @if ($appointment->status === 'canceled')
-                                            <span
-                                                class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded border border-red-400">Canceled</span>
-                                        @elseif ($appointment->status === 'accepted' || $appointment->status === 'confirmed')
-                                            <span
-                                                class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded border border-green-400">Confirmed</span>
-                                        @elseif ($appointment->status === 'rejected')
-                                            <span
-                                                class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded border border-red-400">Rejected</span>
-                                        @else
-                                            <span
-                                                class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded border border-blue-400">Pending</span>
-                                        @endif
+                                        <x-badge status="{{ $appointment->status }}" />
                                     </td>
                                     <td class="px-6 py-4 flex items-center gap-4"><a
                                             href="{{ route('admin.appointments.show', ['id' => $appointment->id]) }}"

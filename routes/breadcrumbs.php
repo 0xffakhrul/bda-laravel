@@ -14,7 +14,8 @@ Breadcrumbs::for('donor.appointments.create', function (BreadcrumbTrail $trail) 
 
 Breadcrumbs::for('donor.appointments.edit', function (BreadcrumbTrail $trail, $appointment) {
     $trail->parent('donor.appointments.index');
-    $trail->push('Edit', route('donor.appointments.edit', $appointment));
+    $trail->push('#' . $appointment->id, route('donor.appointments.edit', $appointment));
+    $trail->push('Edit');
 });
 
 Breadcrumbs::for('admin.appointments.index', function (BreadcrumbTrail $trail) {

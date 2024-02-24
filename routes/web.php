@@ -34,12 +34,17 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
+    // dashboard
     Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+
+    // users
     Route::get('/admin/users', [AdminUserController::class, 'index'])->name('admin.users.index');
     Route::get('/admin/users/create', [AdminUserController::class, 'create'])->name('admin.users.create');
     Route::get('/admin/users/{id}/edit', [AdminUserController::class, 'edit'])->name('admin.users.edit');
     Route::put('/admin/users/{id}', [AdminUserController::class, 'update'])->name('admin.users.update');
     Route::post('/admin/users', [AdminUserController::class, 'store'])->name('admin.users.store');
+
+    //appointments
     Route::get('/admin/appointments', [AdminAppointmentController::class, 'index'])->name('admin.appointments.index');
     Route::get('/admin/appointments/{id}', [AdminAppointmentController::class, 'show'])->name('admin.appointments.show');
     Route::get('/admin/appointments/{id}/edit', [AdminAppointmentController::class, 'edit'])->name('admin.appointments.edit');
@@ -48,11 +53,15 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 });
 
 Route::middleware(['auth', 'role:donor'])->group(function () {
+    //dashboard
     Route::get('/donor/dashboard', [DonorDashboardController::class, 'index'])->name('donor.dashboard');
+
+    //appointments
     Route::get('/donor/appointments', [DonorAppointmentController::class, 'index'])->name('donor.appointments.index');
     Route::get('/donor/appointments/create', [DonorAppointmentController::class, 'create'])->name('donor.appointments.create');
     Route::get('/donor/appointments/{id}/edit', [DonorAppointmentController::class, 'edit'])->name('donor.appointments.edit');
     Route::post('/donor/appointments', [DonorAppointmentController::class, 'store'])->name('donor.appointments.store');
+    Route::put('/donor/appointments/{id}', [DonorAppointmentController::class, 'update'])->name('donor.appointments.update');
 });
 
 

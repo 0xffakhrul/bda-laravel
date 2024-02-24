@@ -2,7 +2,7 @@
     <div class="py-8">
         <div class="max-w-screen-2xl mx-auto sm:px-6 lg:px-8">
             {{ Breadcrumbs::render('admin.appointments.edit', $appointment) }}
-            <h2 class="text-3xl font-bold pb-5">Edit Appointment #{{ $appointment->id }}</h2>
+            <x-title title="Edit Appointment #{{ $appointment->id }}" />
             <div class="sm:hidden">
                 <label for="Tab" class="sr-only">Tab</label>
                 <select id="Tab" class="w-full rounded-md border-gray-200">
@@ -90,8 +90,9 @@
                                 </textarea>
                                 </div>
                             </div>
-                            <button class="px-4 py-2 mt-4 bg-rose-700 text-sm rounded-md font-bold text-white"
-                                type="submit">Submit</button>
+                            {{-- <button class="px-4 py-2 mt-4 bg-rose-700 text-sm rounded-md font-bold text-white"
+                                type="submit">Submit</button> --}}
+                            <x-primary-button>Submit</x-primary-button>
                         </form>
                     @endif
                 </div>

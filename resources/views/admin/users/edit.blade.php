@@ -2,7 +2,7 @@
     <div class="py-8">
         <div class="max-w-screen-2xl mx-auto sm:px-6 lg:px-8">
             {{ Breadcrumbs::render('admin.users.edit', $user) }}
-            <h2 class="text-3xl font-bold pb-5">Edit {{ $user->name }}'s profile</h2>
+            <x-title title="Edit {{ $user->name }}'s profile" class="pb-4" />
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <form action="{{ route('admin.users.update', ['id' => $user->id]) }}" method="POST">

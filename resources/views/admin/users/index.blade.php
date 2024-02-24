@@ -1,11 +1,10 @@
 <x-app-layout>
     <div class="py-8">
         <div class="max-w-screen-2xl mx-auto sm:px-4 lg:px-6">
+            {{ Breadcrumbs::render('admin.users.index') }}
             <div class="flex items-center justify-between pb-4">
-                {{ Breadcrumbs::render('admin.users.index') }}
-                <h1 class="text-3xl font-bold">Users List</h1>
-                <button class="bg-rose-700 px-4 py-2 text-gray-50 font-bold rounded-md"><a
-                        href="{{ route('admin.users.create') }}">Add new User</a></button>
+                <x-title title="Users List" />
+                <x-primary-button><a href="{{ route('admin.users.create') }}">Add new User</a></x-primary-button>
             </div>
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class=" text-gray-900 dark:text-gray-100">
