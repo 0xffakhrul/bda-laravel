@@ -19,8 +19,18 @@
         </div>
         <div class="mt-4">
             <x-input-label for="blood_type" :value="__('Blood Type')" />
-            <x-text-input id="blood_type" class="block mt-1 w-full" type="text" name="blood_type" :value="old('blood_type')"
-                required autocomplete="username" />
+            {{-- <x-text-input id="blood_type" class="block mt-1 w-full" type="text" name="blood_type" :value="old('blood_type')"
+                required autocomplete="username" /> --}}
+            <select name="blood_type" id="" class="block mt-1 w-full">
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="0+">O+</option>
+                <option value="0-">O-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+            </select>
             <x-input-error :messages="$errors->get('blood_type')" class="mt-2" />
         </div>
         <div class="mt-4">
