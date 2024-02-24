@@ -59,4 +59,23 @@ class AppointmentController extends Controller
             return redirect()->route('donor.appointments.index')->with('error', 'Donor not found for the user.');
         }
     }
+
+    public function update(Request $request, $id)
+    {
+        $appointment = Appointment::findOrFail($id);
+
+        $request->validate([
+            'date' => 'required',
+            'time' => 'required',
+            'notes' => 'nullable',
+        ]);
+
+        $appointment->update([
+            'date' => $request->input('date'),
+            'time' => $request->input('time'),
+            'notes' => $request->input('notes'),
+        ]);
+
+        return redirect()->route('donor.appointments.index')->with('success', 'Appointment updated successfully!');
+    }
 }
