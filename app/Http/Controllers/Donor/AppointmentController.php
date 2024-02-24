@@ -14,7 +14,7 @@ class AppointmentController extends Controller
         if (Auth::check()) {
             $user = Auth::user();
             if ($user->donor) {
-                $appointments = $user->donor->appointments;
+                $appointments = $user->donor->appointments()->paginate(6);
                 return view('donor.appointments.index', ['appointments' => $appointments]);
             }
         }
@@ -27,12 +27,18 @@ class AppointmentController extends Controller
         return view('donor.appointments.create');
     }
 
+    public function edit($id)
+    {
+        $appointment = Appointment::findOrFail($id);
+        return view('donor.appointments.edit', ['appointment' => $appointment]);
+    }
+
     public function store(Request $request)
     {
         $request->validate([
             'date' => 'required',
             'time' => 'required',
-            'notes' => 'required',
+            'notes' => 'nullable',
         ]);
 
         $user = Auth::user();
